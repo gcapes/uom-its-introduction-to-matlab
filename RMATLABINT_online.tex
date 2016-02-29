@@ -34,8 +34,8 @@
 \section{Before you get started}
 \begin{frame}{Before you get started}
 	\begin{itemize}
-		\item Check the \href{https://www.applications.itservices.manchester.ac.uk/show_product.php?id=98&tab=licensing}{IT Services website} for license restrictions. This page has several tabs with lots of useful information including installation instructions
-		\item Ensure connection to University network license i.e. connect to campus local-area network or \href{http://www.itservices.manchester.ac.uk/our-services/my-it/vpn/}{VPN} (staff only)
+		\item Check the \href{https://www.applications.itservices.manchester.ac.uk/show_product.php?id=98&tab=licensing}{IT Services website} for licence restrictions. This page has several tabs with lots of useful information including installation instructions
+		\item Ensure connection to University network licence i.e. connect to campus local-area network or \href{http://www.itservices.manchester.ac.uk/our-services/my-it/vpn/}{VPN} (staff only)
 		\item The licence supports 616 concurrent research users (and generally fewer licences for MATLAB's toolboxes), so please:
 		\begin{itemize}
 			\item Don't leave MATLAB running unnecessarily
@@ -158,7 +158,7 @@
 		\item To list all variables in current workspace enter \texttt{who} or \texttt{whos}
 		\item Variables are shown in the \texttt{Workspace} window - double click on them to view
 		\item \texttt{clear} removes all variables, \texttt{clear variable1} removes \texttt{variable1} only
-		\item Use \texttt{save} and \texttt{load} to save variables to/ load from files (be default MATLAB saves binary datat files, which guarantees no loss of accuracy and is quicker than human-readable text)
+		\item Use \texttt{save} and \texttt{load} to save variables to/ load from files (by default MATLAB saves binary data files, which guarantees no loss of accuracy and is quicker than human-readable text)
 		\item See MATLAB Help pages for more information ($>>$ \texttt{doc save; doc load})
 	\end{itemize}
 	}
@@ -238,7 +238,7 @@
 		\item Most MATLAB functionality is accessed via functions
 		\item To call (i.e. run) a function enter the function name
 		\item Any data required by the function must be passed to the function as input arguments
-		\item When the function finishes values are passed back as output arguments
+		\item When the function finishes, values are passed back as output arguments
 		\item Input and output arguments are sometimes optional
 		\item In general MATLAB has very good documentation - read this to understand how to use MATLAB’s functions 
 		
@@ -262,12 +262,12 @@
 }
 
 
-\frame{\frametitle{MATLAB notation}\framesubtitle{The semi-colon}
+\frame{\frametitle{MATLAB notation}\framesubtitle{The semicolon}
 	\begin{itemize}
 		\item By default MATLAB displays output after a command is run (e.g. Assigning variables, Calculations, Function calls)
 		\item The semicolon suppresses this output, e.g.
 		
-		\includegraphics[scale=0.7]{semi-colon}
+		\includegraphics[scale=0.7]{semicolon}
 		\item This does not supress text printed to the screen from the command or function (e.g. via \texttt{disp} or \texttt{fprintf} - see MATLAB Help on \texttt{disp} and \texttt{fprintf})
 	\end{itemize}
 }
@@ -415,7 +415,7 @@
 			\item Around 8 significant decimal digits
 		\end{itemize}
 		\item They must be created explicitly e.g. using the \texttt{single }function
-		 \item You probably won’t use these, but it may be important to know they exist
+		 \item You probably won't use these, but it may be important to know they exist
 		 
 		 \includegraphics[scale=0.7]{single}
 	\end{itemize}
@@ -502,7 +502,7 @@
 
 \begin{frame}{Strings}
 	\begin{itemize}
-		\item Strings (i.e. text) are arrays of characters (We’ll come to arrays later)
+		\item Strings (i.e. text) are arrays of characters (We'll come to arrays later)
 		\item They are of class \texttt{char}
 		\item They are created using single quotes e.g.
 		
@@ -621,11 +621,11 @@
 	\begin{itemize}
 		\item Document your scripts and functions, so that you (or anyone else using your code) can understand how everything works
 		
-		\item When writing comments, assume you'll come back to the code in many years time and won't remember anything about how it works
-		\item Use variable names that describe what they do
-		\item Divide longer program into logical units (e.g. using functions)
+		\item When writing comments, assume you'll come back to the code in many years' time and won't remember anything about how it works
+		\item Use variable names that describe what they are for
+		\item Divide longer programs into logical units (e.g. using functions)
 		
-		Functions not covered in this course (look for examples in the MATLAB documentation, andx` consider attending the \href{https://app.manchester.ac.uk/rmatlabpro}{Programming in MATLAB} course)
+		Functions not covered in this course (look for examples in the MATLAB documentation, and consider attending the \href{https://app.manchester.ac.uk/rmatlabpro}{Programming in MATLAB} course)
 	\end{itemize}
 }
 
@@ -716,7 +716,7 @@
 			\item Arrays are dense by default (all values are stored in memory, even if they are zero)
 			\item Sparse arrays are also available (only non-zero values are stored)
 		\end{itemize}
-		\item Note: arrays are different to the \texttt{cell} and \texttt{struct} classes
+		\item Note: arrays are different from the \texttt{cell} and \texttt{struct} classes
 		\item Example of a 4$\times$6 array:
 	\includegraphics[width=\textwidth]{rand_array}
 	\end{itemize}
@@ -810,7 +810,7 @@
 \begin{frame}{Accessing elements using colon notation}{Some examples}
 	\begin{itemize}
 		\item Colon notation allows us to access several elements at once 
-		\item Try these examples for yourself, removing the semi-colons to show the results
+		\item Try these examples for yourself, removing the semicolons to show the results
 	\end{itemize}
 	
 	\includegraphics[scale=0.7]{colon_notation_array_examples}
@@ -881,8 +881,8 @@
 			\item Matrix operator\\
 			Used to perform matrix operations
 		\end{enumerate}
-		\item . is used to differentiate the array operator if \textbf{(and only if)} there are 2 versions\\
-		\item e.g. matrix multiply * versus array multiply .*\\
+		\item . (dot) is used to differentiate the array operator if \textbf{(and only if)} there are 2 versions\\
+		\item e.g. matrix multiply * versus array multiply .* (the dot is small, isn't it?)\\
 		\texttt{A*B} multiplies matrix A by matrix B\\
 		\texttt{A.*B} multiplies individual elements of arrays A and B\\
 		\item e.g. matrix power \ $\hat{}$ \ versus array power .$\hat{}$\\
