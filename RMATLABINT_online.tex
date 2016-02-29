@@ -267,7 +267,7 @@
 		\item By default MATLAB displays output after a command is run (e.g. Assigning variables, Calculations, Function calls)
 		\item The semicolon suppresses this output, e.g.
 		
-		\includegraphics[scale=0.7]{semicolon}
+		\includegraphics[scale=0.7]{semi-colon}
 		\item This does not supress text printed to the screen from the command or function (e.g. via \texttt{disp} or \texttt{fprintf} - see MATLAB Help on \texttt{disp} and \texttt{fprintf})
 	\end{itemize}
 }
@@ -668,15 +668,19 @@
 	\end{itemize}
 }
 
-\frame{\frametitle{Printing text to screen}
+\frame{\frametitle{Printing text to screen or files}
 	\begin{itemize}
 		\item \texttt{disp} displays single values or strings
 		
 		\includegraphics[scale=0.7]{disp}
 		
-		\item \texttt{fprintf} can print formatted text (see \texttt{doc fprintf})
+		\item \texttt{fprintf} can print formatted text to screen (see \texttt{doc fprintf})
 		
 		\includegraphics[scale=0.7]{fprintf}
+		
+		\item \texttt{fprintf} can also print formatted text to files
+		\includegraphics[width=\textwidth]{fprintf_file}
+
 	\end{itemize}
 }
 
@@ -882,7 +886,7 @@
 			Used to perform matrix operations
 		\end{enumerate}
 		\item . (dot) is used to differentiate the array operator if \textbf{(and only if)} there are 2 versions\\
-		\item e.g. matrix multiply * versus array multiply .* (the dot is small, isn't it?)\\
+		\item e.g. matrix multiply * versus array multiply .* (i.e. dot *)\\
 		\texttt{A*B} multiplies matrix A by matrix B\\
 		\texttt{A.*B} multiplies individual elements of arrays A and B\\
 		\item e.g. matrix power \ $\hat{}$ \ versus array power .$\hat{}$\\
