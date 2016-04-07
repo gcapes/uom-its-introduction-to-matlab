@@ -2,7 +2,9 @@
 %\usepackage{graphicx} % Already loaded by beamer!
 \usepackage{multicol}
 \hypersetup{colorlinks,linkcolor=blue,urlcolor=cyan}
-
+%\usepackage[autolinebreaks,useliterate]{mcode}
+\usepackage{matlab-prettifier}
+\usepackage[T1]{fontenc}
 
 \title{Introduction to MATLAB}
 \date{} % Suppress date
@@ -107,27 +109,48 @@
 
 \section{Variables}
 \subsection{Creating variables}
-\frame{
-\frametitle{Creating variables}
+\begin{frame}[fragile]{Creating variables}
 	\begin{itemize}
 		\item A variable allows us to assign data to a variable name
 		\item To assign data to a variable, use the equals sign, =
 		\item MATLAB first evaluates whatever is to the right of = , and then assigns this value to the variable
 		\item To assign the result of 10 + 1 to a variable \texttt{var1}
-		\includegraphics[width=0.5\linewidth]{assignment1}
+%		\vspace{-0.5cm}
+		\begin{lstlisting}[style=Matlab-editor]
+	>> var1 = 10 + 1
+	var 1 = 
+		11
+		\end{lstlisting}
+%		\vspace{-0.25cm}
 		\item To assign the result of var1 - 3 to a new variable \texttt{var2}
-		\includegraphics[width=0.5\linewidth]{assignment2}		
+%		\vspace{-0.5cm}
+		\begin{lstlisting}[style=Matlab-editor]
+	>> var2 = var1 - 3
+	var 2 = 
+		8
+		\end{lstlisting}
 	\end{itemize}
-}
+\end{frame}
+
 \subsection{Reassigning variables}
-\frame{\frametitle{Reassigning (overwriting) variables}
+\begin{frame}[fragile]{Reassigning (overwriting) variables}
 	\begin{itemize}
 		\item To reassign our variable \texttt{var2} to be the cosine of zero
-		\includegraphics[width=0.5\linewidth]{reassign1}
+%		\vspace{-5mm}
+		\begin{lstlisting}[style=Matlab-editor]
+	>> var2=cos(0)
+	var2 = 
+		1
+		\end{lstlisting}
 		\item To add one to our variable \texttt{var2} (remembering that MATLAB first evaluates what is to the right of the  = , then assigns this value to the variable \texttt{var2} on the left)
-		\includegraphics[width=0.5\linewidth]{reassign2}
+%		\vspace{-5mm}
+		\begin{lstlisting}[style=Matlab-editor]
+	>> var2 = var 2 + 1
+	var2 = 
+		2
+		\end{lstlisting}
 	\end{itemize}
-	}
+\end{frame}
 
 \subsection{Variable names}
 \frame{\frametitle{Variable names}
@@ -144,15 +167,23 @@
 	\end{itemize}
 	}
 
-\frame{\frametitle{A warning about variable names}
+\begin{frame}[fragile]{A warning about variable names}
 	\label{sec:variable_names_warning}
 	\begin{itemize}
 		\item MATLAB will let you create variables with the same name as built in MATLAB variables and functions
 		\item This hides the default MATLAB behaviour and therefore should be avoided
 		\item MATLAB will not warn you if you do this
 	\end{itemize}
-	\includegraphics{variable_name_clash}
-}
+%	\vspace{-5mm}
+	\begin{lstlisting}[style=Matlab-editor]
+	>> pi
+	ans = 
+		3.1416
+	>> pi=5
+	pi = 
+		5
+	\end{lstlisting}
+\end{frame}
 
 \frame{\frametitle{Working with variables}
 	\begin{itemize}
@@ -160,7 +191,8 @@
 		\item Variables are shown in the \texttt{Workspace} window - double click on them to view
 		\item \texttt{clear} removes all variables, \texttt{clear variable1} removes \texttt{variable1} only
 		\item Use \texttt{save} and \texttt{load} to save variables to/ load from files (by default MATLAB saves binary data files, which guarantees no loss of accuracy and is quicker than human-readable text)
-		\item See MATLAB Help pages for more information ($>>$ \texttt{doc save; doc load})
+		\item See MATLAB Help pages for more information (\lstinline[style=Matlab-editor]!>> doc save; doc load!)
+%		($>>$ \texttt{doc save; doc load})
 	\end{itemize}
 	}
 
@@ -243,35 +275,40 @@
 		\item Input and output arguments are sometimes optional
 		\item In general MATLAB has very good documentation - read this to understand how to use MATLAB’s functions 
 		
-		(hint: $>>$ \texttt{function})
+		(hint: \lstinline[style=Matlab-bw]!>> doc function!)
 	\end{itemize}
 }
 
-\frame{\frametitle{Using functions}
-	\framesubtitle{Brief overview - read the documentation for more detail}
+\begin{frame}{Using functions}{Brief overview - read the documentation for more detail}
 	\begin{itemize}
 		\item Input arguments in parentheses ( ) after the function name
 		\item Output arguments in square brackets [ ] before the equals sign (brackets can be omitted for single output argument)
 		\item Separate multiple arguments with commas
 		
-		e.g. \texttt{[out1, out2, out3] = func(in1, in2)}
+%		e.g. \texttt{[out1, out2, out3] = func(in1, in2)}
+		e.g. \lstinline[style=Matlab-editor]![out1, out2, out3] = func(in1, in2)!
 		\item Some arguments may be optional (this will be described in MATLAB Help pages)
 		\item MATLAB functions provide useful error messages - e.g.
 		
 		\includegraphics[width=0.5\linewidth]{function_error}
 	\end{itemize}
-}
+\end{frame}
 
 
-\frame{\frametitle{MATLAB notation}\framesubtitle{The semicolon}
+\begin{frame}[fragile]{MATLAB notation}{The semicolon}
 	\begin{itemize}
 		\item By default MATLAB displays output after a command is run (e.g. Assigning variables, Calculations, Function calls)
 		\item The semicolon suppresses this output, e.g.
-		
-		\includegraphics[scale=0.7]{semi-colon}
+%		\vspace{-5mm}
+		\begin{lstlisting}[style=Matlab-editor]
+	>> var1 = 10;
+	>> sin(10);
+	>>
+		\end{lstlisting}
+%		\includegraphics[scale=0.7]{semi-colon}
 		\item This does not supress text printed to the screen from the command or function (e.g. via \texttt{disp} or \texttt{fprintf} - see MATLAB Help on \texttt{disp} and \texttt{fprintf})
 	\end{itemize}
-}
+\end{frame}
 
 
 \frame{\frametitle{Some functions to start with}
@@ -354,7 +391,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Floating point notation}
+\begin{frame}[fragile]{Floating point notation}
 	\begin{itemize}
 		\item \texttt{e} means times ten raised to the power of 
 		
@@ -362,25 +399,45 @@
 		
 		e.g. 1e-2 means $1 \times 10^{-2}$, i.e. $1/10^{2}$ or 0.01
 		\item This allows us to represent very large and very small numbers e.g.
-		
-		\includegraphics[scale=0.7]{realmax_realmin}
+%		\vspace{-5mm}
+	\begin{lstlisting}[style=Matlab-editor]
+	>> realmax
+	ans = 
+		1.7977e+308
+	>> realmin
+	ans = 
+		2.2251e-308	
+	\end{lstlisting}
+%		\includegraphics[scale=0.7]{realmax_realmin}
 	\end{itemize} 
 \end{frame}
 
-\begin{frame}{Output precision}
+\begin{frame}[fragile]{Output precision}
 	\begin{itemize}
 		\item By default MATLAB displays numbers using up to 5 digits
 		
-		\includegraphics[scale=0.7]{pi_short}
+%		\includegraphics[scale=0.7]{pi_short}
+%		\vspace{-5mm}
+		\begin{lstlisting}[style=Matlab-editor]
+	>> pi
+	ans = 
+		3.1416
+		\end{lstlisting}
 		\item However, $\pi$ is a double precision value and has more precision than 5 digits
 		\item We can change the format to show additional accuracy
-		
-		\includegraphics[scale=0.7]{pi_long}
+%		\vspace{-5mm}
+		\begin{lstlisting}[style=Matlab-editor]
+	>> format long
+	>> pi
+	ans = 
+		3.141592653589793
+		\end{lstlisting}
+%		\includegraphics[scale=0.7]{pi_long}
 		\item Look at the documentation for more information
 	\end{itemize}
 \end{frame}
 
-\frame{\frametitle{Floating point versus real numbers}
+\begin{frame}[fragile]{Floating point versus real numbers}
 	\begin{itemize}
 		\item Floating point numbers are not real numbers
 		
@@ -389,11 +446,15 @@
 		\item However it is very important to understand there are differences between real and floating point numbers. This is a topic for further reading e.g.
 		The MATLAB Help page on ``Floating-Point Numbers'', and \href{https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html}{What Every Computer Scientist Should Know About Floating-Point Arithmetic}
 		\item  For example: sine of $\pi$ is not zero in MATLAB
-		
-		\includegraphics[scale=0.7]{floating_point_sin_pi}
+%		\vspace{-5mm}
+		\begin{lstlisting}[style=Matlab-editor]
+	>> sin(pi)
+	ans = 
+		1.2246e-16
+		\end{lstlisting}
 		
 	\end{itemize}
-}
+\end{frame}
 
 \frame{\frametitle{Floating point rounding}
 	\begin{itemize}
@@ -407,7 +468,7 @@
 	\end{itemize}
 }
 
-\begin{frame}{Single precision floating point values}
+\begin{frame}[fragile]{Single precision floating point values}
 	\begin{itemize}
 		\item MATLAB also has single precision (32-bit) floating point numbers
 		\begin{itemize}
@@ -417,19 +478,34 @@
 		\end{itemize}
 		\item They must be created explicitly e.g. using the \texttt{single }function
 		 \item You probably won't use these, but it may be important to know they exist
-		 
-		 \includegraphics[scale=0.7]{single}
+%		 \vspace{-5mm}
+		 \begin{lstlisting}[style=Matlab-editor]
+	 >> s1 = single(10)
+	 s1 = 
+		 10
+		 \end{lstlisting}
+%		 \includegraphics[scale=0.7]{single}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Complex numbers}
+\begin{frame}[fragile]{Complex numbers}
 	\begin{itemize}
 		\item in MATLAB \texttt{i} represents the square root of -1
 		
-		\includegraphics[scale=0.7]{i_squared}
+%		\includegraphics[scale=0.7]{i_squared}
+		\begin{lstlisting}[style=Matlab-editor]
+	>> i*i
+	ans = 
+	    -1
+		\end{lstlisting}
 		\item Complex arithmetic is fully supported e.g.
 		
-		\includegraphics[scale=0.7]{sqrt-1}
+%		\includegraphics[scale=0.7]{sqrt-1}
+		\begin{lstlisting}[style=Matlab-editor]
+	>> sqrt(-1)
+	ans = 
+	    0.0000 + 1.0000i
+		\end{lstlisting}
 		\item Enter \texttt{help complex} for more information
 		\item Warning: do not use \texttt{i} as a variable name as this will hide MATLAB default behaviour (see slide \ref{sec:variable_names_warning})
 	\end{itemize}
@@ -475,51 +551,81 @@
 \end{frame}
 
 \subsection{Logical values}
-\begin{frame}{Logical values}
+\begin{frame}[fragile]{Logical values}
 	\begin{itemize}
 		\item These represent the logical values \texttt{true} and \texttt{false}
 		\item Values can be either \texttt{1 (true)} or \texttt{0 (false)}
 		\item Assign using \texttt{true} or \texttt{false}
 			
-		\includegraphics[scale=0.7]{true_false_assignment}
+%		\includegraphics[scale=0.7]{true_false_assignment}
+		\begin{lstlisting}[style=Matlab-editor]
+>> a=true
+a = 
+    1
+>> b=false
+b = 
+    0 
+		\end{lstlisting}
 		\item Logical values are more often used when writing your own functions, but are also returned from some intrinsic MATLAB functions, so are useful to know about
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{More on data types}
+\begin{frame}[fragile]{More on data types}
 	\begin{itemize}
-		\item To find the type of the data use the \texttt{class} function - this returns the class of any MATLAB object e.g.
+		\item To find the type of the data use the \lstinline[style=Matlab-editor]!class! function - this returns the class of any MATLAB object e.g.
 		
-		\includegraphics[scale=0.7]{return_class}
+%		\includegraphics[scale=0.7]{return_class}
+		\begin{lstlisting}[style=Matlab-editor]
+>> class(s1)
+ans = 
+single
+		\end{lstlisting}
 		\item Reminder: we can explicitly convert data types e.g.
+		\begin{lstlisting}[style=Matlab-editor]
+>> d1 = 10; % d1 is double precision
+>> i1 = int8(d1); % i1 is of class int8
+		\end{lstlisting}
+%		$\texttt{>> d1 = 10; \% d1 is double precision}$
 		
-		$\texttt{>> d1 = 10; \% d1 is double precision}$
-		
-		$\texttt{>> i1 = int8(d1); \% i1 is of class int8}$
+%		$\texttt{>> i1 = int8(d1); \% i1 is of class int8}$
 		\item MATLAB automatically assigns the class for results involving multiple class types (e.g. multiplying a double and an integer)
 		\item When undertaking calculations using multiple classes make sure you understand how MATLAB behaves (read the documentation or run tests)
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Strings}
+\begin{frame}[fragile]{Strings}
 	\begin{itemize}
 		\item Strings (i.e. text) are arrays of characters (We'll come to arrays later)
 		\item They are of class \texttt{char}
 		\item They are created using single quotes e.g.
 		
-		\includegraphics[scale=0.7]{string}
+%		\includegraphics[scale=0.7]{string}
+		\begin{lstlisting}[style=Matlab-editor]
+>>  my_string='Hello'
+my_string = 
+Hello
+>> class(my_string)
+ans = 
+char
+		\end{lstlisting}
 		\item Some MATLAB functions take strings as input arguments
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Function handles}
+\begin{frame}[fragile]{Function handles}
 	\begin{itemize}
 		\item These allow a function to be to represented by a variable i.e. the variable can be used to execute the function
 		\item The variable has the class \texttt{function\textunderscore handle}
 		\item These can be created using the @ symbol e.g. create a function handle representing the sin function
 
-		\includegraphics[scale=0.7]{sin_function_handle}
-		\item We can use these to pass functions to other functions - e.g. try \texttt{ezplot(@sin)} or \texttt{ezplot(mysine)}
+%		\includegraphics[scale=0.7]{sin_function_handle}
+		\begin{lstlisting}[style=Matlab-editor]
+>> mysine=@sin;
+>> mysine(pi/2)
+ans =
+    1
+		\end{lstlisting}
+		\item We can use these to pass functions to other functions - e.g. try \lstinline[style=Matlab-editor]!ezplot(@sin)! or \lstinline[style=Matlab-editor]!ezplot(mysine)!
 	\end{itemize}
 \end{frame}
 
@@ -533,13 +639,25 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Structures}{Also known as Structure Arrays}
+\begin{frame}[fragile]{Structures}{Also known as Structure Arrays}
 	\begin{itemize}
 		\item These allow you to group related data of different types e.g.
 		
-		\vspace{2mm}
-		
-		\includegraphics[scale=0.7]{structure_example}		
+%		\vspace{2mm}
+		\begin{lstlisting}[style=Matlab-editor]
+>> data.name='sample';data.x=1234;data.y=1.234.4321;
+>> class(data)
+ans = 
+struct
+		\end{lstlisting}
+		\begin{lstlisting}[style=Matlab-bw]
+>> data
+data = 
+    name: 'sample1'
+       x: 1234
+       y: 1.2344e+03 
+		\end{lstlisting}	
+%		\includegraphics[scale=0.7]{structure_example}		
 		\item It may be useful to know about these - see MATLAB Help for further reading
 	\end{itemize}
 \end{frame}
@@ -669,21 +787,35 @@
 	\end{itemize}
 }
 
-\frame{\frametitle{Printing text to screen or files}
+\begin{frame}[fragile]{Printing text to screen or files}
 	\begin{itemize}
 		\item \texttt{disp} displays single values or strings
 		
-		\includegraphics[scale=0.7]{disp}
-		
+%		\includegraphics[scale=0.7]{disp}
+		\begin{lstlisting}[style=Matlab-editor]
+>> a=1234; disp(a), disp('Hello')
+    1234
+Hello
+		\end{lstlisting}
 		\item \texttt{fprintf} can print formatted text to screen (see \texttt{doc fprintf})
 		
-		\includegraphics[scale=0.7]{fprintf}
-		
+%		\includegraphics[scale=0.7]{fprintf}
+		\begin{lstlisting}[style=Matlab-editor]
+>> fprintf('Pi = %0.4g\n',pi)
+Pi = 3.142
+		\end{lstlisting}
+			
 		\item \texttt{fprintf} can also print formatted text to files
-		\includegraphics[width=\textwidth]{fprintf_file}
-
+%		\includegraphics[width=\textwidth]{fprintf_file}
+		\begin{lstlisting}[style=Matlab-editor]
+>> mydata=[12,3,44,25,99];
+>> myfileID=fopen('myDataFile','w');
+>> frpintf(myfileID,'My formatted data: %4.1f\n',mydata);
+>> fclose(myfileID);
+		\end{lstlisting}
+		
 	\end{itemize}
-}
+\end{frame}
 
 
 \frame{\frametitle{The debugger}
@@ -706,7 +838,7 @@
 }
 
 \section{Arrays}
-\frame{\frametitle{Arrays}
+\begin{frame}[fragile]{Arrays}
 	\begin{itemize}
 		\item An array is a systematic collection of data items
 		\begin{itemize}
@@ -723,9 +855,18 @@
 		\end{itemize}
 		\item Note: arrays are different from the \texttt{cell} and \texttt{struct} classes
 		\item Example of a 4$\times$6 array:
-	\includegraphics[width=\textwidth]{rand_array}
+%	\includegraphics[width=\textwidth]{rand_array}
 	\end{itemize}
-}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\scriptsize]
+>> A=rand(4,6)
+A =
+   0.8147    0.6324    0.9575    0.9572    0.4218    0.6557
+   0.9058    0.0975    0.9649    0.4854    0.9157    0.0357
+   0.1270    0.2785    0.1576    0.8003    0.7922    0.8491
+   0.9134    0.5469    0.9706    0.1419    0.9595    0.9340
+\end{lstlisting}
+	
+\end{frame}
 
 \frame{\frametitle{Types of array}
 	\begin{itemize}
@@ -757,42 +898,86 @@
 	\end{itemize}
 }
 \subsection{Accessing individual array elements}
-\begin{frame}{Accessing individual array elements}{One index per dimension}
+\begin{frame}[fragile]{Accessing individual array elements}{One index per dimension}
 	\begin{itemize}
 		\item Use parentheses and indices
 		
 		e.g. Y(3,4) for element at row 3, column 4 in 2D array Y
 		\item Can access array elements on left or right of assignment operator
 		
-		\includegraphics[width=0.4\textwidth]{array_access_pair_indices}	
+%		\includegraphics[width=0.4\textwidth]{array_access_pair_indices}
+		\begin{lstlisting}[style=Matlab-editor,basicstyle=\footnotesize]
+>> Y=magic(4)
+Y = 
+   16	2	3	13
+   5	1	10	8
+   9	7	6	12
+   4	14	15	1
+>> val1=Y(2,3)	
+val1 = 
+   10
+>> Y(1,4) = -17
+Y = 
+   16	2	3	-17
+   5	1	10	8
+   9	7	6	12
+   4	14	15	1
+		\end{lstlisting}	
 		
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Accessing individual array elements}{Single index notation}
+\begin{frame}[fragile]{Accessing individual array elements}{Single index notation}
 	\begin{itemize}
 		\item MATLAB stores elements contiguously in memory using column-wise ordering, i.e. array values are stored one after the other, a column at a time
 		\item A single index can be used to access elements based on the column-wise ordering e.g.
 		
-		\includegraphics[width=0.5\textwidth]{array_access_columnwise}
-		
+%		\includegraphics[width=0.5\textwidth]{array_access_columnwise}
+		\begin{lstlisting}[style=Matlab-editor,basicstyle=\small]
+Y = 
+	16	2	3	-17
+	5	1	10	8
+	9	7	6	12
+	4	14	15	1
+>> Y(9)
+ans = 
+	3   
+		\end{lstlisting}
 		\item Enter \texttt{ help paren} for more information
 	\end{itemize}
 \end{frame}
 
 \subsection{Accessing multiple array elements}
-\begin{frame}{Accessing multiple array elements}
+\begin{frame}[fragile]{Accessing multiple array elements}
 	\begin{itemize}
 		\item Arrays can be used to index arrays e.g.
 		
 		X([4,2,5]) accesses elements with indices 4, 2 and 5
 		(Reminder: create arrays using square brackets [ ])
 		
-		\includegraphics[scale=0.6]{array_access_array_index}
-		
+%		\includegraphics[scale=0.6]{array_access_array_index}
+		\begin{lstlisting}[style=Matlab-editor,basicstyle=\scriptsize]
+>> X=(5:10) % Create an array
+X = 
+	5	6	7	8	9
+>> ind=[4,2,3] % Create another array
+ind = 
+	4	2	3
+>> X(ind) % Index array X using array ind
+ans = 
+	8	6	9
+>> X([1,3,4]) % Index X using array [1,3,4]
+ans =
+	5	7	8
+		\end{lstlisting}
 		\item We can use this to assign multiple values simultaneously e.g.
 		
-		\includegraphics[scale=0.6]{array_assign_array_index}
+%		\includegraphics[scale=0.6]{array_assign_array_index}
+		\begin{lstlisting}[style=Matlab-editor,basicstyle=\scriptsize]
+>> X([1,2,4])=[12,13,14] % Assign values using arrays
+X = 
+	12	13	7	14	9	10
+		\end{lstlisting}
 	\end{itemize}
 \end{frame}
 
@@ -812,30 +997,50 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Accessing elements using colon notation}{Some examples}
+\begin{frame}[fragile]{Accessing elements using colon notation}{Some examples}
 	\begin{itemize}
 		\item Colon notation allows us to access several elements at once 
 		\item Try these examples for yourself, removing the semicolons to show the results
 	\end{itemize}
 	
-	\includegraphics[scale=0.7]{colon_notation_array_examples}
+%	\includegraphics[scale=0.7]{colon_notation_array_examples}
+	\begin{lstlisting}[style=Matlab-editor,basicstyle=\footnotesize]
+>> clear % Clear any previously created variables
+>> Y(1:2:10=1:4:20); % assign multiple values
+>> Y(5:end) % for elements 5th to the last
+>> Y=magic(7); % create matrix for examples below
+>> Y(:,7:-2:3) % elements in all rows, columns 7,5,3
+>> Y(:)=2 % assign all elements the value 2
+	\end{lstlisting}
 \end{frame}
 
 \subsection{Some useful array functions}
-\begin{frame}{Some useful array functions}
+\begin{frame}[fragile]{Some useful array functions}
 	\begin{itemize}
 		\item To find array size
 		
-		\includegraphics[scale=0.7]{array_size}
-		
+%		\includegraphics[scale=0.7]{array_size}
+		\begin{lstlisting}[style=Matlab-editor]
+>> A = rand(4,10);
+>> size(A)
+ans = 
+	4	10
+>> nrow = size(A,1); % Number of rows
+>> ncol = size(A,2); % Number of columns
+		\end{lstlisting}
 		\item To find number of dimensions
 		
-		\includegraphics[scale=0.7]{array_ndims}
+%		\includegraphics[scale=0.7]{array_ndims}
+		\begin{lstlisting}[style=Matlab-editor]
+>> ndim(A)
+ans = 
+	2
+		\end{lstlisting}
 	\end{itemize}
 \end{frame}
 
 \subsection{Memory allocation}
-\begin{frame}{Memory allocation - Preallocate arrays whenever possible!}{}
+\begin{frame}[fragile]{Memory allocation - Preallocate arrays whenever possible!}{}
 	\begin{itemize}
 		\item Array memory allocation is automatic
 		\begin{itemize}
@@ -844,8 +1049,12 @@
 			\item Both are shown in the example below
 		\end{itemize}
 		
-		\includegraphics[scale=0.7]{array_memory_allocation}
-		
+%		\includegraphics[scale=0.7]{array_memory_allocation}
+		\begin{lstlisting}[style=Matlab-editor]
+>> clear; A(4)=5
+A = 
+	0	0	0	5
+		\end{lstlisting}		
 		\item Extending arrays may be relatively slow
 		\begin{itemize}
 			\item e.g. growing a vector by 1 element each time a value is inserted.
@@ -862,16 +1071,29 @@
 \end{frame}
 
 \subsection{Array operations}
-\begin{frame}{Array operations}{}
+\begin{frame}[fragile]{Array operations}{}
 	\begin{itemize}
 		\item MATLAB (\textbf{MAT}rix \textbf{LAB}oratory) is designed to operate on matrices and arrays
 		\item MATLAB functions will work with arrays, e.g.
 		
-		\includegraphics[scale=0.7]{array_operations_sqrt}
+%		\includegraphics[scale=0.7]{array_operations_sqrt}
+		\begin{lstlisting}[style=Matlab-editor]
+>> A=[1,2,3,4]; B=sqrt(A)
+B = 
+	1.0000	1.4142	1.7321	2.0000
+		\end{lstlisting}
 		
 		\item Operators also work on arrays
 		
-		\includegraphics[scale=0.7]{array_operators}
+%		\includegraphics[scale=0.7]{array_operators}
+		\begin{lstlisting}[style=Matlab-editor]
+>> A = A + 1
+A = 
+	2	3	4	5		
+>> A(:) = 2
+A = 
+	2	2	2	2
+		\end{lstlisting}
 	\end{itemize}
 \end{frame}
 
@@ -896,8 +1118,45 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Matrix operators}{Examples}
-	\includegraphics[width=\textheight]{matrix_array_operator_examples}
+\begin{frame}[fragile]{Matrix operators}{Examples}
+%	\includegraphics[width=\textheight]{matrix_array_operator_examples}
+	\begin{lstlisting}[style=Matlab-editor,basicstyle=\footnotesize]
+>> a=magic(3)
+a =
+	8	1	6
+	3	5	7
+	4	9	2
+	\end{lstlisting}
+	
+	\begin{multicols}{2}
+		\begin{lstlisting}[style=Matlab-editor,basicstyle=\footnotesize]
+% matrix multiplication
+>> a*a 
+ans = 
+	91	67	67
+	67	91	67
+	67	67	91
+
+>> a^2 % matrix power
+ans = 
+	91 67	67
+	67	91	67
+	67	67	91
+
+% array multiplication
+>> a.*a 
+ans = 
+	64	1	36
+	9	25	49
+	16	81	4
+
+>> a.^2 % array power
+ans =
+	64	1	36
+	9	15	49
+	16	81	4
+		\end{lstlisting}
+	\end{multicols}	
 \end{frame}
 	
 \subsection{Plotting arrays}
