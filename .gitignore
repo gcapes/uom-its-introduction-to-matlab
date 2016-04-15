@@ -1,7 +1,10 @@
-RMATLABINT_online.toc
+*.toc
 *.aux
-RMATLABINT_online.log
+*.log
 *.out
-RMATLABINT_online.snm
-RMATLABINT_online.nav
+*.snm
+*.nav
 *.gz
+*.vrb
+Thumbs.db
+mcode.sty
