@@ -145,7 +145,7 @@
 		\item To add one to our variable \texttt{var2} (remembering that MATLAB first evaluates what is to the right of the  = , then assigns this value to the variable \texttt{var2} on the left)
 %		\vspace{-5mm}
 		\begin{lstlisting}[style=Matlab-editor]
-	>> var2 = var 2 + 1
+	>> var2 = var2 + 1
 	var2 = 
 		2
 		\end{lstlisting}
@@ -162,7 +162,7 @@
 		\item Advice
 		\begin{itemize}
 			\item Choose descriptive names that aid understanding how the code works
-			\item Don’t be afraid of long names if it makes code more readable e.g. \texttt{number\textunderscore of\textunderscore samples, BeamIntensity} 
+			\item Don't be afraid of long names if it makes code more readable e.g. \texttt{number\textunderscore of\textunderscore samples, BeamIntensity} 
 		\end{itemize}
 	\end{itemize}
 	}
@@ -387,7 +387,7 @@
 		
 		A number obtained by adding a real and imaginary number
 		
-		e.g. $\sqrt{−214.123} + 153$
+		e.g. $153 + \sqrt{-214.123}$
 	\end{itemize}
 	}
 \subsection{Numbers in MATLAB}
@@ -402,6 +402,7 @@
 			\item Includes Inf (infinity) and NaN (not a number)
 		\end{itemize}
 		\item So the following assigns a double precision floating point value to the variable var1
+		
 		$>>$ var1 = 10
 		\item Floating point values are used to represent real numbers and double precision floating point numbers are very likely what you will use (most) in MATLAB
 	\end{itemize}
@@ -475,11 +476,11 @@
 \frame{\frametitle{Floating point rounding}
 	\begin{itemize}
 		\item  In general not all real numbers can be represented exactly
-		\item For example eps returns the distance between 1.0 and
+		\item For example \lstinline[style=Matlab-editor]!eps! returns the distance between 1.0 and
 		the next largest double-precision number
-		– Real numbers between 1.0 and 1.0+eps can't be represented
+		\item  Real numbers between 1.0 and 1.0+eps can't be represented
 		using MATLAB doubles
-		– Values between 1.0 and 1.0 + eps will be rounded
+		\item Values between 1.0 and 1.0 + eps will be rounded
 		\item This introduces rounding errors
 	\end{itemize}
 }
@@ -623,7 +624,7 @@ Hello
 >> class(my_string)
 ans = 
 char
-		\end{lstlisting}
+		\end{lstlisting} 	% These are not typos above - results are not indented.
 		\item Some MATLAB functions take strings as input arguments
 	\end{itemize}
 \end{frame}
@@ -738,7 +739,7 @@ data =
 		\end{itemize}
 		\item The first comment line (referred to as the H1 line) is used by \texttt{lookfor} (\texttt{lookfor} searches for strings in the H1 line of \texttt{.m} files - see \texttt{help lookfor})
 		\item The text in the first block of comments is returned by help (see \texttt{doc help }or \texttt{help help }for more info)
-		\item It is good practice to write scripts that work with MATLAB’s help
+		\item It is good practice to write scripts that work with MATLAB's help
 		
 		
 	\end{itemize}
